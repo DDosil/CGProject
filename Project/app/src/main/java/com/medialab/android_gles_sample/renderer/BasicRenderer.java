@@ -83,6 +83,12 @@ public class BasicRenderer {
 	int[] mTexId = {0};
 	int[] mTexNorId = {0};
 
+	// Shadow Map, shadow fbo
+	int[] mShadowFbo = {0};
+	int[] mTexShadow = {0};
+	protected int mShadowWidth;
+	protected int mShadowHeight;
+
 	public BasicRenderer() {
 		mWidth = 0;
 		mHeight = 0;
@@ -316,7 +322,34 @@ public class BasicRenderer {
 			GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, mTexNorId[0]);
 		}
 	}
+/*
+	void CreateFBO(){
+		GLES20.glGenFramebuffers(1, mShadowFbo, 0);
+		GLES20.glBindFramebuffer(GLES20.GL_FRAMEBUFFER, mShadowFbo[0]);
 
+		GLES20.glReadBuffer(none);
+		GLES20.glDrawBuffer(1, &none);
+
+		GLES20.glFramebufferTexture2D(GLES20.GL_FRAMEBUFFER, GLES20.GL_DEPTH_ATTACHMENT,
+				GLES20.GL_TEXTURE_2D, mTexShadow[0], 0);
+	}
+
+	void ShadowTex(){
+		GLES20.glGenTextures(1, mTexShadow, 0);
+		GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, mTexShadow[0]);
+
+		GLES20.glTexParameteri(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_MIN_FILTER, GLES20.GL_LINEAR);
+		GLES20.glTexParameteri(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_MAG_FILTER, GLES20.GL_LINEAR);
+
+		GLES20.glTexParameteri(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_COMPARE_MODE, GLES20.GL_COMPARE_REF_TO_TEXTURE);
+		GLES20.glTexParameteri(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_COMPARE_FUNC, GLES20.GL_LEQUAL);
+
+		GLES20.glTexImage2D(GLES20.GL_TEXTURE_2D, 0, GLES20.GL_DEPTH_COMPONENT,
+				mShadowWidth, mShadowHeight, 0, GLES20.GL_DEPTH_COMPONENT,
+				GLES20.GL_UNSIGNED_INT, NULL);
+
+	}
+*/
 	Vector3f GetArcballVector(Vector2f point)
 	{
 		float radius = 1.0f;
@@ -409,7 +442,7 @@ public class BasicRenderer {
 		mShader.SetUniform("s_tex0", 0);
 		mShader.SetUniform("s_texNor", TEX_POS_NORMAL);
 		mShader.SetUniform("eyePos", mCamera.GetEye());
-		mShader.SetUniform("lightPos", 50.0f, 50.0f, 50.0f);
+		mShader.SetUniform("lightPos", mCamera.GetEye());
 		mShader.SetUniform("materialDiff", 0.8f, 1.0f, 0.7f);
 		mShader.SetUniform("materialSpec", 0.8f, 1.0f, 0.7f);
 		mShader.SetUniform("materialAmbi", 0.0f, 0.0f, 0.0f);

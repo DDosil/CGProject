@@ -17,6 +17,10 @@ public class NormalMappingView extends SampleView {
 		mRenderer.SetProgram(vs, fs);
 
 		InputStream teapot = FileLoader.GetStream(this, "obj3d/teapot");
+		InputStream cube = FileLoader.GetStream(this, "obj3d/cube");
+		InputStream shuriken = FileLoader.GetStream(this, "obj3d/shuriken");
+		InputStream chair = FileLoader.GetStream(this, "obj3d/chair");
+
 
 		TexData[] textJ = new TexData[1];
 		TexData[] normal_texJ = new TexData[1];

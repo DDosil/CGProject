@@ -22,7 +22,7 @@ public class MainActivity extends ListActivity {
         setContentView(R.layout.activity_main);
 
         mSamples = new ArrayList<>();
-        mSamples.add(new ListItem("[HW3] Normal mapping",              ViewType.VIEW_NORMAL));
+        mSamples.add(new ListItem("CGProject",              ViewType.VIEW_NORMAL));
 
         ArrayAdapter<ListItem> adapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_list_item_1, mSamples);

@@ -14,7 +14,7 @@ public class ColoringView extends SampleView {
 		String fs = FileLoader.ReadTxtFile(this, "shader/view_color/color.fs");
 		mRenderer.SetProgram(vs, fs);
 
-		InputStream teapot = FileLoader.GetStream(this, "obj3d/teapot");
+		InputStream teapot = FileLoader.GetStream(this, "obj3d/shuriken");
 
 	//	TexData[] textJ = new TexData[1];
 	//	textJ[0] = FileLoader.ReadTexture(this, R.drawable.tex_c_brick);
