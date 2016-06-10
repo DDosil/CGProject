@@ -201,7 +201,7 @@ public class BasicCamera {
 		Vec3 dir = Vec3.sub(mAt, mEye);
 		dir.normalize().mul(vel);
 		mEye.add(dir);
-		UpdateAt();
+		//UpdateAt();
 	}
 
 	public void MoveBackward(float vel)
@@ -209,7 +209,7 @@ public class BasicCamera {
 		Vec3 dir = Vec3.sub(mEye, mAt);
 		dir.normalize().mul(vel);
 		mEye.add(dir);
-		UpdateAt();
+		//UpdateAt();
 	}
 
 	public void MoveRight(float vel)
@@ -218,16 +218,56 @@ public class BasicCamera {
 		dir.normalize();
 		dir = Vec3.cross(mUp, dir).mul(-vel);
 		mEye.add(dir);
-		UpdateAt();
+		//UpdateAt();
 	}
+	public void RotateRight(float Ang)
+	{
+		float [] rotateMat = new float[16];
+		float [] dirVec = new float[4];
+
+		Vec3 dirat = Vec3.sub(mAt, mEye);
+
+		dirVec[0] = dirat.x;
+		dirVec[1] = dirat.y;
+		dirVec[2] = dirat.z;
+		dirVec[3] = 0;
+
+		Matrix.setRotateM(rotateMat, 0, -Ang, 0, 1.0f, 0);
+		Matrix.multiplyMV(dirVec, 0, rotateMat, 0, dirVec, 0);
+
+		Vec3 dir = new Vec3(dirVec);
+		mAt = dir.add(mEye);
+	}
+
 
 	public void MoveLeft(float vel)
 	{
+
 		Vec3 dir = Vec3.sub(mEye, mAt);
 		dir.normalize();
 		dir = Vec3.cross(mUp, dir).mul(vel);
 		mEye.add(dir);
+
 		UpdateAt();
+	}
+
+	public void RotateLeft(float Ang)
+	{
+		float [] rotateMat = new float[16];
+		float [] dirVec = new float[4];
+
+		Vec3 dirat = Vec3.sub(mAt, mEye);
+
+		dirVec[0] = dirat.x;
+		dirVec[1] = dirat.y;
+		dirVec[2] = dirat.z;
+		dirVec[3] = 0;
+
+		Matrix.setRotateM(rotateMat, 0, Ang, 0, 1.0f, 0);
+		Matrix.multiplyMV(dirVec, 0, rotateMat, 0, dirVec, 0);
+
+		Vec3 dir = new Vec3(dirVec);
+		mAt = dir.add(mEye);
 	}
 
 	public void MoveUp(float vel)
@@ -237,11 +277,51 @@ public class BasicCamera {
 		UpdateAt();
 	}
 
+	public void RotateUp(float Ang)
+	{
+		float [] rotateMat = new float[16];
+		float [] dirVec = new float[4];
+
+		Vec3 dirat = Vec3.sub(mAt, mEye);
+
+		dirVec[0] = dirat.x;
+		dirVec[1] = dirat.y;
+		dirVec[2] = dirat.z;
+		dirVec[3] = 0;
+
+		Matrix.setRotateM(rotateMat, 0, -Ang, 0, 0, 1.0f);
+		Matrix.multiplyMV(dirVec, 0, rotateMat, 0, dirVec, 0);
+
+		Vec3 dir = new Vec3(dirVec);
+		mAt = dir.add(mEye);
+	}
+
+
 	public void MoveDown(float vel)
 	{
+
 		Vec3 dir = Vec3.mul(mUp, -vel);
 		mEye.add(dir);
 		UpdateAt();
+	}
+
+	public void RotateDown(float Ang)
+	{
+		float [] rotateMat = new float[16];
+		float [] dirVec = new float[4];
+
+		Vec3 dirat = Vec3.sub(mAt, mEye);
+
+		dirVec[0] = dirat.x;
+		dirVec[1] = dirat.y;
+		dirVec[2] = dirat.z;
+		dirVec[3] = 0;
+
+		Matrix.setRotateM(rotateMat, 0, Ang, 0, 0, 1.0f);
+		Matrix.multiplyMV(dirVec, 0, rotateMat, 0, dirVec, 0);
+
+		Vec3 dir = new Vec3(dirVec);
+		mAt = dir.add(mEye);
 	}
 
 }

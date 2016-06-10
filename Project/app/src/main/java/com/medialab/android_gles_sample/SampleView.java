@@ -102,16 +102,20 @@ public abstract class SampleView extends Activity {
                         mRenderer.GetCamera().MoveBackward(1);
                         break;
                     case R.id.button3:
-                        mRenderer.GetCamera().MoveRight(1);
+                        //mRenderer.GetCamera().MoveLeft(1);
+                        mRenderer.GetCamera().RotateLeft(5);
                         break;
                     case R.id.button4:
-                        mRenderer.GetCamera().MoveLeft(1);
+                        //mRenderer.GetCamera().MoveRight(1);
+                        mRenderer.GetCamera().RotateRight(5);
                         break;
                     case R.id.button5:
-                        mRenderer.GetCamera().MoveUp(1);
+                        //mRenderer.GetCamera().MoveUp(1);
+                        mRenderer.GetCamera().RotateUp(5);
                         break;
                     case R.id.button6:
-                        mRenderer.GetCamera().MoveDown(1);
+                        //mRenderer.GetCamera().MoveDown(1);
+                        mRenderer.GetCamera().RotateDown(5);
                         break;
                 }
             }
